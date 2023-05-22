@@ -11,13 +11,30 @@ if(empty($_GET['length'])){
   if($_GET['length'] < $min || $_GET['length'] > $max ){
     $output = "! inserire una password con un minimo di $min caratteri e un massimo di $max !";
   }else{
-  $output = "okay";
+    $output = genPassword($_GET['length']);
   }
 };
 
 
-function genPassword(){
-  $ps = 'ciao';
+function genPassword($length){
+  $ps = '';
+  $listaComp = [
+    'abcdefghilmnopqrstuvzxy',
+    'ABCDEFGHILMNOPQRETUVZXY',
+    '1234567890',
+    '!?&%$<>^+-*/()[]{}@#_=',
+  ];
+
+  $indexComp = 0;
+
+  while(strlen($ps) < $length) {
+    $listaString = $listaComp [$indexComp];
+    $comp = $listaString [rand(0, strlen($listaString) -1)];
+    $ps .= $comp;
+    $indexComp++;
+    if ($indexComp === count($listaComp) -1 ) $indexComp = 0;
+  }
+  return $ps;
 }
 ?>
 
