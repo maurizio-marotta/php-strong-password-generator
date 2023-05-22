@@ -4,21 +4,20 @@ $min = 8;
 $max = 32;
 
 
-if(!empty($_GET['length'])){
+if(empty($_GET['length'])){
   $output = "scegliere una password con $min caratteri e $max caratteri";
 
 }else{
   if($_GET['length'] < $min || $_GET['length'] > $max ){
     $output = "! inserire una password con un minimo di $min caratteri e un massimo di $max !";
   }else{
-  $output = "$ps";
+  $output = "okay";
   }
 };
 
 
 function genPassword(){
   $ps = 'ciao';
-  return $ps;
 }
 ?>
 
