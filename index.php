@@ -3,7 +3,23 @@
 $min = 8;
 $max = 32;
 
-$output = "sceglere una password con $min caratteri e $max caratteri"
+
+if(!empty($_GET['length'])){
+  $output = "scegliere una password con $min caratteri e $max caratteri";
+
+}else{
+  if($_GET['length'] < $min || $_GET['length'] > $max ){
+    $output = "! inserire una password con un minimo di $min caratteri e un massimo di $max !";
+  }else{
+  $output = "$ps";
+  }
+};
+
+
+function genPassword(){
+  $ps = 'ciao';
+  return $ps;
+}
 ?>
 
 
@@ -18,14 +34,13 @@ $output = "sceglere una password con $min caratteri e $max caratteri"
 </head>
 <body>
   <div class="container d-flex justify-content-center mt-5">
-    <form action="index.php" method="GET" >
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET" >
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"><?php echo $output ?></label>
-        <input type="text" class="form-control">
+        <label for="exampleInputEmail1" class="form-label" name="length" id="length"><?php echo $output ?></label>
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Lunghezza Password</label>
-        <input type="text" class="form-control" id="exampleInputPassword1">
+        <input type="number" name="length" class="form-control" id="length">
       </div>
       <button type="submit" class="btn btn-primary">Invia</button>
     </form> 
